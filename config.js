@@ -32,11 +32,11 @@ var palabras = {
       "mediaURL" : ""
   },
   "marcaciones": {
-      "type": "text",
+      "type": "image",
       "accion" : "continue",
       "queue" : "",
       "mensaje" : "Consulta la imagen para conocer los trámites que puedes realizar a través de marcaciones",
-      "mediaURL" : "http://187.210.40.89:3700/tramitesCortos.png" // archvio excel
+      "mediaURL" : "http://187.210.40.89:3700/tramitesCortos.png"
   },
   "configuracion": {
       "type": "image",
