@@ -36,14 +36,14 @@ var palabras = {
       "accion" : "continue",
       "queue" : "",
       "mensaje" : "Consulta la imagen para conocer los trámites que puedes realizar a través de marcaciones",
-      "mediaURL" : "http://187.210.40.89:3700/tramitesCortos.png"
+      "mediaURL" : "https://menubothn.mybluemix.net/tramitesCortos.png"
   },
   "configuracion": {
       "type": "image",
       "accion" : "continue",
       "queue" : "",
       "mensaje" : "Sigue los pasos detallados en la imagen, si el inconveniente persiste, favor escribe *asesor* para recibir asistencia técnica con uno de nuestros agentes.",
-      "mediaURL" : "http://187.210.40.89:3700/APN.png"
+      "mediaURL" : "https://menubothn.mybluemix.net/APN.png"
   },
   "asesor": {
       "type": "text",
