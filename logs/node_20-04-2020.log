@@ -123,3 +123,16 @@
 ****************************[DATOS DE ENTRADA]****************************
 [apiVersion] : 1.0 	 [conversationID] : 1234eyx328 	 [authToken] :  dsrdsfrxw934df	 [channel] : messenger
  
+*********************************20-04-2020 18:13:22*********************************
+[FECHA] : 20-04-2020 - [HORA] : 18:13:22 - [conversationID] : 1234eyx328 - [Accion] : /message 
+ [STATUS] : 200 - [Resultado] : 
+{ context: { agent: false, callback: false, video: false },
+  action: { type: 'continue', queue: '' },
+  messages: 
+   [ { type: 'text',
+       text: 'Consulta la imagen para conocer los trámites que puedes realizar a través de marcaciones',
+       mediaURL: 'http://187.210.40.89:3700/tramitesCortos.png' } ],
+  additionalInfo: { key: 'RUT', RUT: '1-9' } }
+****************************[DATOS DE ENTRADA]****************************
+[apiVersion] : 1.0 	 [conversationID] : 1234eyx328 	 [authToken] :  dsrdsfrxw934df	 [channel] : messenger
+ 

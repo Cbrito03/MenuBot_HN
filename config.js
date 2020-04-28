@@ -1,6 +1,26 @@
-var cola_opc1 = "HN_Wa_Movil";
+//var cola_opc1 = "HN_Wa_Movil";
+
+var cola_opc1 = "WhatsappTest";
 
 //var msj_asesor = "👋 Te damos la bienvenida a la GigaRed Claro, nuestro compromiso es mantenerte conectado.😊 $cr $cr ";
+
+var OPEN_HOUR = 7;
+var OPEN_MINUTE = 0;
+
+var CLOSE_HOUR = 20;
+var CLOSE_MINUTE = 0;
+
+var dias = {
+    "0" : ["domingo",true],
+    "1" : ["lunes",true],
+    "2" : ["martes",true],
+    "3" : ["miercoles",true],
+    "4" : ["jeves",true],
+    "5" : ["viernes",true],
+    "6" : ["sabado",true]
+};
+
+var mjs_horario = "Estamos en Horario no hábil";
 
 var palabras = {
   "club": {
@@ -62,7 +82,7 @@ var palabras_buscar = [
   "marcaciones",
   "configuracion",
   "asesor",
-]
+];
 
 var mensaje_df = "¡Hola! $cr Soy tu asistente virtual 🤖 de Claro $cr Te puedo ayudar con las siguientes opciones: $cr $cr "
   mensaje_df +="➡️ Envía *recarga* para hacer una recarga. $cr $cr ";
@@ -117,3 +137,13 @@ exports.msj_default = msj_default;
 exports.bandera_log = bandera_log;
 
 exports.obtener_fecha = obtener_fecha;
+
+exports.OPEN_HOUR = OPEN_HOUR;
+exports.OPEN_MINUTE = OPEN_MINUTE;
+
+exports.CLOSE_HOUR = CLOSE_HOUR;
+exports.CLOSE_MINUTE = CLOSE_MINUTE;
+
+exports.dias = dias;
+
+exports.mjs_horario = mjs_horario;

@@ -9,15 +9,14 @@ var localStorage = require('localStorage')
 let fs = require('fs');
 var util = require('util');
 var config = require('./config.js');
-var port = 8080;
-//var port = 3700;
+var horario = require('./controllers/validar_horario.js');
+//var port = 8080;
+var port = 3700;
 var log_file = "";
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
-
-//app.use( express.static( "public" ) );
 
 app.use(express.static('img'));
 
@@ -53,10 +52,17 @@ if(config.bandera_log)
 var palabras = config.palabras;
 var msj_dafault = config.msj_default;
 var menu_opciones = config.menu_opciones;
+var mjs_horario = config.mjs_horario;
 
 app.post('/message', (req, res) => {
   config.obtener_fecha();
+
   console.log("Peticion POST HN /message [FECHA-HORA] : "+config.fecha_actual+" "+config.hora_actual);
+
+  var horarios = horario.validarHorario(config.OPEN_HOUR, config.OPEN_MINUTE, config.CLOSE_HOUR, config.CLOSE_MINUTE);
+
+  console.log(horarios);
+  
   var result, resultado;
   var bandera = false , estatus = 200 , menu_dos = 0;
   var msj_buscar = "", msj_buscar_opcion = "";
@@ -99,18 +105,38 @@ app.post('/message', (req, res) => {
 
                   if(atr.toLowerCase() === cadena[i])
                   {
-                    msj_buscar = cadena[i];
-
-                    result = palabras[atr];
+                    if(cadena[i] === "asesor")
+                    {
+                      if(horarios)
+                      {
+                        msj_buscar = cadena[i];
+                        result = palabras[atr];
+                        bandera_opc = true;                                              
+                      }
+                      else
+                      {
+                        msj_buscar = cadena[i];
+                        palabras[atr].accion = "end";
+                        palabras[atr].queue = "";
+                        palabras[atr].mensaje = mjs_horario;
+                        result = palabras[atr];
+                      }
+                    }
+                    else
+                    {
+                      msj_buscar = cadena[i];
+                      result = palabras[atr];
+                    }
 
                     bandera = true;
-
                     break;
                   }
                 }
 
                 if(bandera){ break; }
               }
+
+              console.log("[msj_buscar_opcion]"+msj_buscar_opcion);
 
               if(!bandera){ result = msj_dafault;}
 
@@ -138,6 +164,8 @@ app.post('/message', (req, res) => {
                   "RUT":"1-9"
                 }
               }
+
+              if(result.mensaje === ""){  resultado.messages = [];  }
             }
             else
             {
@@ -250,7 +278,8 @@ app.get('/:img', function(req, res){
 });
 
 app.get('/', (req, res) => {
-  res.status(200).send("Bienvenido al menú Bot, las opciones disponibles son: <br> /message<br> /terminate")
+  const now = new Date();
+  res.status(200).send("Bienvenido al menú Bot de Honduras, las opciones disponibles son: <br> /message<br> /terminate <br> "+now+" <br> Versión: 2.0.0")
 })
 
 http.createServer(app).listen(port, () => {
