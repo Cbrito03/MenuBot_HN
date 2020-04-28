@@ -10,8 +10,7 @@ let fs = require('fs');
 var util = require('util');
 var config = require('./config.js');
 var horario = require('./controllers/validar_horario.js');
-//var port = 8080;
-var port = 3700;
+var port = 8080;
 var log_file = "";
 
 app.use(bodyParser.urlencoded({ extended: false }));
