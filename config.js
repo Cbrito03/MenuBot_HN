@@ -1,6 +1,6 @@
-//var cola_opc1 = "HN_Wa_Movil";
+var cola_opc1 = "HN_Wa_Movil";
 
-var cola_opc1 = "WhatsappTest";
+//var cola_opc1 = "WhatsappTest";
 
 //var msj_asesor = "👋 Te damos la bienvenida a la GigaRed Claro, nuestro compromiso es mantenerte conectado.😊 $cr $cr ";
 
