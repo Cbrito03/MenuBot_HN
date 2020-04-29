@@ -1,4 +1,3 @@
-// Modifico Carlos Brito 18-04-2020 12:37 AM
 var express = require('express')
 var http = require('http')
 var app = express()
@@ -278,7 +277,18 @@ app.get('/:img', function(req, res){
 
 app.get('/', (req, res) => {
   const now = new Date();
-  res.status(200).send("Bienvenido al menú Bot de Honduras, las opciones disponibles son: <br> /message<br> /terminate <br> "+now+" <br> Versión: 2.0.0")
+
+  // create Date object for current location
+  var d = new Date();
+  var offset = -6;
+  var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+  var nd = new Date(utc + (3600000*offset));
+
+  var respuesta = "Bienvenido al menú Bot de Honduras, las opciones disponibles son: <br> /message<br> /terminate <br>";
+  respuesta += "Hora del servidor: " + now + " <br> ";
+  respuesta += "Versión: 2.0.0 <br>";
+  respuesta += "Hora Convertida  " + nd +" <br>";
+  res.status(200).send(respuesta);
 })
 
 http.createServer(app).listen(port, () => {

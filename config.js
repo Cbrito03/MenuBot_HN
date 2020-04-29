@@ -94,6 +94,7 @@ var mensaje_df = "¡Hola! $cr Soy tu asistente virtual 🤖 de Claro $cr Te pued
   mensaje_df +="➡️ Envía *asesor* si aún deseas ser atendido por uno de nuestros agentes de servicio al cliente o ventas. 👩💻👨💻 $cr $cr ";
 
 var msj_default = {
+    "type": "text",
   "accion": "continue",
   "mensaje" : mensaje_df
 }
