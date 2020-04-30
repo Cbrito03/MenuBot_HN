@@ -46,3 +46,27 @@
 ****************************[DATOS DE ENTRADA]****************************
 [apiVersion] : 1.0 	 [conversationID] : 1234eyx328 	 [authToken] :  dsrdsfrxw934df	 [channel] : messenger
  
+*********************************30-04-2020 10:45:56*********************************
+[FECHA] : 30-04-2020 - [HORA] : 10:45:56 - [conversationID] : 1234eyx328 - [Accion] : /message 
+ [STATUS] : 200 - [Resultado] : 
+{
+  context: { agent: false, callback: false, video: false },
+  action: { type: 'transfer', queue: 'HN_Wa_Movil' },
+  messages: [],
+  additionalInfo: { key: 'RUT', RUT: '1-9' }
+}
+****************************[DATOS DE ENTRADA]****************************
+[apiVersion] : 1.0 	 [conversationID] : 1234eyx328 	 [authToken] :  dsrdsfrxw934df	 [channel] : messenger
+ 
+*********************************30-04-2020 10:48:04*********************************
+[FECHA] : 30-04-2020 - [HORA] : 10:48:04 - [conversationID] : 1234eyx328 - [Accion] : /message 
+ [STATUS] : 200 - [Resultado] : 
+{
+  context: { agent: false, callback: false, video: false },
+  action: { type: 'transfer', queue: 'HN_Wa_Movil' },
+  messages: [],
+  additionalInfo: { key: 'RUT', RUT: '1-9' }
+}
+****************************[DATOS DE ENTRADA]****************************
+[apiVersion] : 1.0 	 [conversationID] : 1234eyx328 	 [authToken] :  dsrdsfrxw934df	 [channel] : messenger
+ 

@@ -13,13 +13,13 @@ function isValidHour(hour, minute) // Verifica si la hora es valida, entre numer
 
 function validar_rango_hora(hour)
 {
-	console.log("Hora: ", "hour >= OPEN_HOUR && hour <= CLOSE_HOUR", hour , OPEN_HOUR , hour , CLOSE_HOUR);
+	console.log("[Brito] :: [Horas] :: [hour >= OPEN_HOUR && hour <= CLOSE_HOUR] :: "+ hour +" :: "+ OPEN_HOUR +" :: "+ hour +" :: "+ CLOSE_HOUR);
 	return hour >= OPEN_HOUR && hour <= CLOSE_HOUR;
 }
 
 function validar_rango_minuto(minute)
 {
-	console.log("Minuto: ", "minute >= OPEN_MINUTE && minute < CLOSE_MINUTE", minute , OPEN_MINUTE , minute , CLOSE_MINUTE);
+	console.log("[Brito] :: [Minutos] :: [minute >= OPEN_MINUTE && minute < CLOSE_MINUTE] :: "+ minute +" :: "+ OPEN_MINUTE +" :: "+ minute +" :: "+ CLOSE_MINUTE);
 	return minute >= OPEN_MINUTE && minute < CLOSE_MINUTE;
 }
 
@@ -43,11 +43,11 @@ validarHorario = function(OPEN_HOUR, OPEN_MINUTE, CLOSE_HOUR, CLOSE_MINUTE)
 	var hora = now.getHours();
 	var minuto =now.getMinutes();
 
-	console.log("validarHorario", hora ,minuto);
+	console.log("[Brito] :: [validarHorario] :: [Hora] :: "+ hora +" :: [Minuto] :: "+ minuto);
 
 	var dia = now.getDay();
 
-	console.log(now, hora, minuto, dia);
+	console.log("[Brito] :: [validarHorario] :: [NOW] :: "+ now +" :: [Hora] :: "+ hora +" :: [Minuto] :: "+ minuto +" :: [Dia] :: "+ dia);
 
 	if(isValidHour(OPEN_HOUR, OPEN_MINUTE) && isValidHour(CLOSE_HOUR, CLOSE_MINUTE))
 	{
@@ -63,19 +63,19 @@ validarHorario = function(OPEN_HOUR, OPEN_MINUTE, CLOSE_HOUR, CLOSE_MINUTE)
 					}
 					else
 					{
-						console.log('Minuto False');
+						console.log('[Brito] :: [validarHorario] :: [Minuto False]');
 						return false;
 					}
 				}
 				else
 				{
-					console.log('Hora true es diferente a la hora fin', hora , CLOSE_HOUR);
+					console.log('[Brito] :: [validarHorario] :: [Hora true es diferente a la hora fin] :: [Hora del Sistema] :: '+ hora +" :: [CLOSE_HOUR] :: "+ CLOSE_HOUR);
 					return true;
 				}
 			}
 			else
 			{
-				console.log('Hora False');
+				console.log('[Brito] :: [validarHorario] :: [Hora False]');
 				return false;
 			}
 		}
@@ -86,7 +86,7 @@ validarHorario = function(OPEN_HOUR, OPEN_MINUTE, CLOSE_HOUR, CLOSE_MINUTE)
 	}
 	else
 	{
-		console.log('No cumple con los requisitos: Se ingresaron numeros negativos o fuera del rango establecido.');
+		console.log('[Brito] :: [No cumple con los requisitos: Se ingresaron numeros negativos o fuera del rango establecido.]');
 		return false;
 	}
 }

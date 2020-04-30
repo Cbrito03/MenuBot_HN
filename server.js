@@ -55,11 +55,11 @@ var mjs_horario = config.mjs_horario;
 app.post('/message', (req, res) => {
   config.obtener_fecha();
 
-  console.log("Peticion POST HN /message [FECHA-HORA] : "+config.fecha_actual+" "+config.hora_actual);
+  console.log("[Brito] :: [Peticion POST HN /message] :: [FECHA Actual] :: "+config.fecha_actual+" :: [Hora Actual] :: "+config.hora_actual);
 
   var horarios = horario.validarHorario(config.OPEN_HOUR, config.OPEN_MINUTE, config.CLOSE_HOUR, config.CLOSE_MINUTE);
 
-  console.log("[message]", "Respuesta de Horario", horarios);
+  console.log("[Brito] :: [message] :: [Respuesta de Horario] :: " + horarios);
   
   var result, resultado;
   var bandera = false , estatus = 200 , menu_dos = 0;
@@ -113,6 +113,7 @@ app.post('/message', (req, res) => {
                       }
                       else
                       {
+                        console.log("[Brito] :: [No cumple horario habil] :: [horarios] :: "+horarios);
                         msj_buscar = cadena[i];
                         palabras[atr].accion = "end";
                         palabras[atr].queue = "";
@@ -134,7 +135,7 @@ app.post('/message', (req, res) => {
                 if(bandera){ break; }
               }
 
-              console.log("[msj_buscar_opcion]"+msj_buscar_opcion);
+              console.log("[Brito] :: [msj_buscar_opcion] :: "+msj_buscar_opcion);
 
               if(!bandera){ result = msj_dafault;}
 
@@ -280,7 +281,7 @@ app.get('/', (req, res) => {
 
   var horarios = horario.validarHorario(config.OPEN_HOUR, config.OPEN_MINUTE, config.CLOSE_HOUR, config.CLOSE_MINUTE);
 
-  console.log("[message]", "Respuesta de Horario", horarios);
+  console.log("[Brito] :: [Raiz] :: [Respuesta de Horario] :: " + horarios);
 
   // create Date object for current location
   var d = new Date();
