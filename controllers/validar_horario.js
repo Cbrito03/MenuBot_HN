@@ -13,11 +13,13 @@ function isValidHour(hour, minute) // Verifica si la hora es valida, entre numer
 
 function validar_rango_hora(hour)
 {
+	console.log("Hora: ", "hour >= OPEN_HOUR && hour <= CLOSE_HOUR", hour , OPEN_HOUR , hour , CLOSE_HOUR);
 	return hour >= OPEN_HOUR && hour <= CLOSE_HOUR;
 }
 
 function validar_rango_minuto(minute)
 {
+	console.log("Minuto: ", "minute >= OPEN_MINUTE && minute < CLOSE_MINUTE", minute , OPEN_MINUTE , minute , CLOSE_MINUTE);
 	return minute >= OPEN_MINUTE && minute < CLOSE_MINUTE;
 }
 
@@ -41,6 +43,8 @@ validarHorario = function(OPEN_HOUR, OPEN_MINUTE, CLOSE_HOUR, CLOSE_MINUTE)
 	var hora = now.getHours();
 	var minuto =now.getMinutes();
 
+	console.log("validarHorario", hora ,minuto);
+
 	var dia = now.getDay();
 
 	console.log(now, hora, minuto, dia);
@@ -59,16 +63,19 @@ validarHorario = function(OPEN_HOUR, OPEN_MINUTE, CLOSE_HOUR, CLOSE_MINUTE)
 					}
 					else
 					{
+						console.log('Minuto False');
 						return false;
 					}
 				}
 				else
 				{
+					console.log('Hora true es diferente a la hora fin', hora , CLOSE_HOUR);
 					return true;
 				}
 			}
 			else
 			{
+				console.log('Hora False');
 				return false;
 			}
 		}

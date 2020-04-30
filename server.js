@@ -59,7 +59,7 @@ app.post('/message', (req, res) => {
 
   var horarios = horario.validarHorario(config.OPEN_HOUR, config.OPEN_MINUTE, config.CLOSE_HOUR, config.CLOSE_MINUTE);
 
-  console.log(horarios);
+  console.log("[message]", "Respuesta de Horario", horarios);
   
   var result, resultado;
   var bandera = false , estatus = 200 , menu_dos = 0;
@@ -278,6 +278,10 @@ app.get('/:img', function(req, res){
 app.get('/', (req, res) => {
   const now = new Date();
 
+  var horarios = horario.validarHorario(config.OPEN_HOUR, config.OPEN_MINUTE, config.CLOSE_HOUR, config.CLOSE_MINUTE);
+
+  console.log("[message]", "Respuesta de Horario", horarios);
+
   // create Date object for current location
   var d = new Date();
   var offset = -6;
@@ -286,8 +290,10 @@ app.get('/', (req, res) => {
 
   var respuesta = "Bienvenido al menú Bot de Honduras, las opciones disponibles son: <br> /message<br> /terminate <br>";
   respuesta += "Hora del servidor: " + now + " <br> ";
-  respuesta += "Versión: 2.0.0 <br>";
+  respuesta += "Hora Ninicio: " + config.OPEN_HOUR + " - Hora Fin: " + config.CLOSE_HOUR + " <br> ";
+  respuesta += "Respuesta del Horario: " + horarios + " <br> ";
   respuesta += "Hora Convertida  " + nd +" <br>";
+  respuesta += "Versión: 2.0.0 <br>";
   res.status(200).send(respuesta);
 })
 

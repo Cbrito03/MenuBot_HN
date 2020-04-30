@@ -1,0 +1,48 @@
+*********************************30-04-2020 09:45:44*********************************
+[FECHA] : 30-04-2020 - [HORA] : 09:45:44 - [conversationID] : 1234eyx328 - [Accion] : /message 
+ [STATUS] : 200 - [Resultado] : 
+{
+  context: { agent: false, callback: false, video: false },
+  action: { type: 'transfer', queue: 'HN_Wa_Movil' },
+  messages: [],
+  additionalInfo: { key: 'RUT', RUT: '1-9' }
+}
+****************************[DATOS DE ENTRADA]****************************
+[apiVersion] : 1.0 	 [conversationID] : 1234eyx328 	 [authToken] :  dsrdsfrxw934df	 [channel] : messenger
+ 
+*********************************30-04-2020 09:52:14*********************************
+[FECHA] : 30-04-2020 - [HORA] : 09:52:14 - [conversationID] : 1234eyx328 - [Accion] : /message 
+ [STATUS] : 200 - [Resultado] : 
+{
+  context: { agent: false, callback: false, video: false },
+  action: { type: 'transfer', queue: 'HN_Wa_Movil' },
+  messages: [],
+  additionalInfo: { key: 'RUT', RUT: '1-9' }
+}
+****************************[DATOS DE ENTRADA]****************************
+[apiVersion] : 1.0 	 [conversationID] : 1234eyx328 	 [authToken] :  dsrdsfrxw934df	 [channel] : messenger
+ 
+*********************************30-04-2020 09:54:01*********************************
+[FECHA] : 30-04-2020 - [HORA] : 09:54:01 - [conversationID] : 1234eyx328 - [Accion] : /message 
+ [STATUS] : 200 - [Resultado] : 
+{
+  context: { agent: false, callback: false, video: false },
+  action: { type: 'transfer', queue: 'HN_Wa_Movil' },
+  messages: [],
+  additionalInfo: { key: 'RUT', RUT: '1-9' }
+}
+****************************[DATOS DE ENTRADA]****************************
+[apiVersion] : 1.0 	 [conversationID] : 1234eyx328 	 [authToken] :  dsrdsfrxw934df	 [channel] : messenger
+ 
+*********************************30-04-2020 09:56:28*********************************
+[FECHA] : 30-04-2020 - [HORA] : 09:56:28 - [conversationID] : 1234eyx328 - [Accion] : /message 
+ [STATUS] : 200 - [Resultado] : 
+{
+  context: { agent: false, callback: false, video: false },
+  action: { type: 'transfer', queue: 'HN_Wa_Movil' },
+  messages: [],
+  additionalInfo: { key: 'RUT', RUT: '1-9' }
+}
+****************************[DATOS DE ENTRADA]****************************
+[apiVersion] : 1.0 	 [conversationID] : 1234eyx328 	 [authToken] :  dsrdsfrxw934df	 [channel] : messenger
+ 
