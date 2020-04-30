@@ -20,7 +20,7 @@ var dias = {
     "6" : ["sabado",true]
 };
 
-var mjs_horario = "Estamos en Horario no hábil";
+var mjs_horario = "Nuestro horario de atención es de 7:00 am a 8:00 pm";
 
 var palabras = {
   "club": {
