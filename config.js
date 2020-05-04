@@ -1,14 +1,12 @@
-var cola_opc1 = "HN_Wa_Movil";
-
-//var cola_opc1 = "WhatsappTest";
-
-//var msj_asesor = "👋 Te damos la bienvenida a la GigaRed Claro, nuestro compromiso es mantenerte conectado.😊 $cr $cr ";
+var cola_opc1 = "HN_Wa_Movil"; //var cola_opc1 = "WhatsappTest";
 
 var OPEN_HOUR = 7;
 var OPEN_MINUTE = 0;
 
 var CLOSE_HOUR = 20;
 var CLOSE_MINUTE = 0;
+
+var offset = -6;
 
 var dias = {
     "0" : ["domingo",true],
@@ -21,6 +19,14 @@ var dias = {
 };
 
 var mjs_horario = "Nuestro horario de atención es de 7:00 am a 8:00 pm";
+
+var contenedor = {
+  "type": "",
+  "accion" : "",
+  "queue" : "",
+  "mensaje" : "",
+  "mediaURL" : ""
+};
 
 var palabras = {
   "club": {
@@ -74,16 +80,6 @@ var palabras = {
   }
 };
 
-var palabras_buscar = [
-  "club",
-  "recarga",
-  "paquete",
-  "pagar",
-  "marcaciones",
-  "configuracion",
-  "asesor",
-];
-
 var mensaje_df = "¡Hola! $cr Soy tu asistente virtual 🤖 de Claro $cr Te puedo ayudar con las siguientes opciones: $cr $cr "
   mensaje_df +="➡️ Envía *recarga* para hacer una recarga. $cr $cr ";
   mensaje_df +="➡️ Envía *paquete* para comprar un paquete. $cr $cr ";
@@ -94,13 +90,11 @@ var mensaje_df = "¡Hola! $cr Soy tu asistente virtual 🤖 de Claro $cr Te pued
   mensaje_df +="➡️ Envía *asesor* si aún deseas ser atendido por uno de nuestros agentes de servicio al cliente o ventas. 👩💻👨💻 $cr $cr ";
 
 var msj_default = {
-    "type": "text",
+  "type": "text",
   "accion": "continue",
   "mensaje" : mensaje_df
 }
 
-var msj_asesor = "";
-var bandera_log = true;
 var fecha_actual = "";
 var hora_actual = "";
 
@@ -131,11 +125,7 @@ obtener_fecha = function()
 
 exports.palabras = palabras;
 
-exports.palabras_buscar = palabras_buscar;
-
 exports.msj_default = msj_default;
-
-exports.bandera_log = bandera_log;
 
 exports.obtener_fecha = obtener_fecha;
 
@@ -144,7 +134,10 @@ exports.OPEN_MINUTE = OPEN_MINUTE;
 
 exports.CLOSE_HOUR = CLOSE_HOUR;
 exports.CLOSE_MINUTE = CLOSE_MINUTE;
+exports.offset = offset;
 
 exports.dias = dias;
 
 exports.mjs_horario = mjs_horario;
+
+exports.contenedor = contenedor;

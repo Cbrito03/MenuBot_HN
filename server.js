@@ -26,31 +26,11 @@ app.use((req, res, next) => {
     next();
 });
 
-if(config.bandera_log)
-{
-  config.obtener_fecha();
-
-  fs.open(__dirname + '/logs/node_' + config.fecha_actual + '.log', 'a+', (err, fd) => { //wx verifica si existe el archivo
-    if (err)
-    {
-      if (err.code === 'EEXIST')
-      {
-        log_file = fs.createWriteStream(__dirname + '/logs/node_'+config.fecha_actual+'.log', {flags : 'a'});
-      }
-      throw err;
-      writeMyData(fd);
-    }
-    else
-    {
-      log_file = fs.createWriteStream(__dirname + '/logs/node_'+config.fecha_actual+'.log', {flags : 'a'});
-    }
-  });
-}
-
 var palabras = config.palabras;
 var msj_dafault = config.msj_default;
 var menu_opciones = config.menu_opciones;
 var mjs_horario = config.mjs_horario;
+var contenedor = config.contenedor;
 
 app.post('/message', (req, res) => {
   config.obtener_fecha();
@@ -62,20 +42,16 @@ app.post('/message', (req, res) => {
   console.log("[Brito] :: [message] :: [Respuesta de Horario] :: " + horarios);
   
   var result, resultado;
-  var bandera = false , estatus = 200 , menu_dos = 0;
+  var bandera = false , estatus = 200;
   var msj_buscar = "", msj_buscar_opcion = "";
 
   var apiVersion = req.body.apiVersion;
   var conversationID = req.body.conversationId;
   var authToken = req.body.authToken;
-  //var RRSS = req.body.RRSS;
   var channel = req.body.channel;
   var user = req.body.user;
   var context = req.body.context;
   var cadena = req.body.message;
-  var bandera_asesor = false;
-
-  log_file.write(util.format('*********************************'+config.fecha_actual+' '+config.hora_actual+'*********************************')+'\n');
 
   if(apiVersion !== '' && typeof apiVersion !== "undefined")
   {
@@ -108,17 +84,17 @@ app.post('/message', (req, res) => {
                       if(horarios)
                       {
                         msj_buscar = cadena[i];
-                        result = palabras[atr];
-                        bandera_opc = true;                                              
+                        result = palabras[atr];                                       
                       }
                       else
                       {
                         console.log("[Brito] :: [No cumple horario habil] :: [horarios] :: "+horarios);
                         msj_buscar = cadena[i];
-                        palabras[atr].accion = "end";
-                        palabras[atr].queue = "";
-                        palabras[atr].mensaje = mjs_horario;
-                        result = palabras[atr];
+                        contenedor.type = palabras[atr].type;
+                        contenedor.accion = "end";
+                        contenedor.queue = "";
+                        contenedor.mensaje = mjs_horario;
+                        result = contenedor;
                       }
                     }
                     else
@@ -148,7 +124,7 @@ app.post('/message', (req, res) => {
                   "video":false
                 },
                 "action":{
-                  "type": result.accion,// "type":"continue"
+                  "type": result.accion,
                   "queue": result.queue
                 },
                 "messages":[
@@ -214,14 +190,6 @@ app.post('/message', (req, res) => {
     }
   }
 
-  log_file.write(util.format('[FECHA] : '+config.fecha_actual+' - [HORA] : '+config.hora_actual+' - [conversationID] : '+conversationID+' - [Accion] : /message \n [STATUS] : '+estatus+' - [Resultado] : ')+'\n');
-  log_file.write(util.format(resultado));
-  log_file.write('\n');
-  log_file.write("****************************[DATOS DE ENTRADA]****************************");
-  log_file.write('\n');
-  log_file.write("[apiVersion] : " + apiVersion + " \t [conversationID] : " + conversationID + " \t [authToken] :  " + authToken + "\t [channel] : " + channel);
-  log_file.write('\n \n');
-
   res.status(estatus).json(resultado);
 })
 
@@ -285,13 +253,13 @@ app.get('/', (req, res) => {
 
   // create Date object for current location
   var d = new Date();
-  var offset = -6;
+  var offset = config.offset;
   var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
   var nd = new Date(utc + (3600000*offset));
 
   var respuesta = "Bienvenido al menú Bot de Honduras, las opciones disponibles son: <br> /message<br> /terminate <br>";
   respuesta += "Hora del servidor: " + now + " <br> ";
-  respuesta += "Hora Ninicio: " + config.OPEN_HOUR + " - Hora Fin: " + config.CLOSE_HOUR + " <br> ";
+  respuesta += "Hora inicio: " + config.OPEN_HOUR + " - Hora Fin: " + config.CLOSE_HOUR + " <br> ";
   respuesta += "Respuesta del Horario: " + horarios + " <br> ";
   respuesta += "Hora Convertida  " + nd +" <br>";
   respuesta += "Versión: 2.0.0 <br>";

@@ -5,6 +5,7 @@ var OPEN_HOUR = config.OPEN_HOUR;
 var OPEN_MINUTE = config.OPEN_MINUTE;
 var CLOSE_HOUR = config.CLOSE_HOUR;
 var CLOSE_MINUTE = config.CLOSE_MINUTE;
+var offset = config.offset;
 
 function isValidHour(hour, minute) // Verifica si la hora es valida, entre numeros positivos y menores a 24
 {
@@ -30,13 +31,7 @@ function validar_dia(day)
 
 validarHorario = function(OPEN_HOUR, OPEN_MINUTE, CLOSE_HOUR, CLOSE_MINUTE)
 {
-	/*const now = new Date();
-	var hora = now.getHours();
-	var minuto =now.getMinutes();
-	var dia = now.getDay();*/
-
-	var d = new Date();
-	var offset = -6;
+	var d = new Date();	
 	var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
 	var now = new Date(utc + (3600000*offset));
 	  
