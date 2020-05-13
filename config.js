@@ -3,7 +3,7 @@ var cola_opc1 = "HN_Wa_Movil"; //var cola_opc1 = "WhatsappTest";
 var OPEN_HOUR = 7;
 var OPEN_MINUTE = 0;
 
-var CLOSE_HOUR = 20;
+var CLOSE_HOUR = 22;
 var CLOSE_MINUTE = 0;
 
 var offset = -6;
@@ -18,7 +18,7 @@ var dias = {
     "6" : ["sabado",true]
 };
 
-var mjs_horario = "Nuestro horario de atención es de 7:00 am a 8:00 pm";
+var mjs_horario = "Nuestro horario de atención es de 7:00 am a 10:00 pm";
 
 var contenedor = {
   "type": "",
