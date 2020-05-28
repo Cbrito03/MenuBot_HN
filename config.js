@@ -1,4 +1,4 @@
-var cola_opc1 = "HN_Wa_Movil"; //var cola_opc1 = "WhatsappTest";
+var pais = "HN", nomApp = "MenuBot_HN";
 
 var OPEN_HOUR = 7;
 var OPEN_MINUTE = 0;
@@ -17,6 +17,10 @@ var dias = {
     "5" : ["viernes",true],
     "6" : ["sabado",true]
 };
+
+var cola_opc1 = "HN_Wa_Movil";
+var cola_opc1_FB = "HN_FB_MSS_SAC";
+var cola_opc1_TW = "HN_TW_DM_SAC";
 
 var mjs_horario = "Nuestro horario de atención es de 7:00 am a 10:00 pm";
 
@@ -74,7 +78,7 @@ var palabras = {
   "asesor": {
       "type": "text",
       "accion" : "transfer",
-      "queue" : cola_opc1,
+      "queue" : "",
       "mensaje" : "",
       "mediaURL" : ""
   }
@@ -141,3 +145,13 @@ exports.dias = dias;
 exports.mjs_horario = mjs_horario;
 
 exports.contenedor = contenedor;
+
+/*****************************************************/
+
+exports.pais = pais;
+
+exports.nomApp = nomApp;
+
+exports.cola_opc1 = cola_opc1;
+exports.cola_opc1_FB = cola_opc1_FB;
+exports.cola_opc1_TW = cola_opc1_TW;

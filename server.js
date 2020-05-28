@@ -10,7 +10,6 @@ var util = require('util');
 var config = require('./config.js');
 var horario = require('./controllers/validar_horario.js');
 var port = 8080;
-var log_file = "";
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -32,14 +31,15 @@ var menu_opciones = config.menu_opciones;
 var mjs_horario = config.mjs_horario;
 var contenedor = config.contenedor;
 
+var pais = config.pais;
+var nomApp = config.nomApp;
+
 app.post('/message', (req, res) => {
   config.obtener_fecha();
 
-  console.log("[Brito] :: [Peticion POST HN /message] :: [FECHA Actual] :: "+config.fecha_actual+" :: [Hora Actual] :: "+config.hora_actual);
+  console.log("[Brito] :: [Peticion POST HN /message]");
 
   var horarios = horario.validarHorario(config.OPEN_HOUR, config.OPEN_MINUTE, config.CLOSE_HOUR, config.CLOSE_MINUTE);
-
-  console.log("[Brito] :: [message] :: [Respuesta de Horario] :: " + horarios);
   
   var result, resultado;
   var bandera = false , estatus = 200;
@@ -52,6 +52,12 @@ app.post('/message', (req, res) => {
   var user = req.body.user;
   var context = req.body.context;
   var cadena = req.body.message;
+
+  var bandera_tranferido = false;
+  var bandera_fueraHorario = false;
+  var nom_grupoACD = "";
+  var opcion = "";
+  var bandera_opt = true;
 
   if(apiVersion !== '' && typeof apiVersion !== "undefined")
   {
@@ -79,12 +85,16 @@ app.post('/message', (req, res) => {
 
                   if(atr.toLowerCase() === cadena[i])
                   {
+                    opcion = cadena[i];
+
                     if(cadena[i] === "asesor")
                     {
                       if(horarios)
                       {
                         msj_buscar = cadena[i];
-                        result = palabras[atr];                                       
+                        nom_grupoACD = obtener_ACD(channel);                        
+                        result = palabras[atr];
+                        bandera_tranferido = true;                                  
                       }
                       else
                       {
@@ -95,6 +105,7 @@ app.post('/message', (req, res) => {
                         contenedor.queue = "";
                         contenedor.mensaje = mjs_horario;
                         result = contenedor;
+                        bandera_fueraHorario = true;
                       }
                     }
                     else
@@ -104,6 +115,7 @@ app.post('/message', (req, res) => {
                     }
 
                     bandera = true;
+                    bandera_opt = true;
                     break;
                   }
                 }
@@ -111,9 +123,37 @@ app.post('/message', (req, res) => {
                 if(bandera){ break; }
               }
 
-              console.log("[Brito] :: [msj_buscar_opcion] :: "+msj_buscar_opcion);
 
-              if(!bandera){ result = msj_dafault;}
+              var options = {
+                'method': 'POST',
+                'url': 'https://estadisticasmenubot.mybluemix.net/opcion/insert',
+                'headers': {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                {
+                  "conversacion_id": conversationID,
+                  "pais": pais,
+                  "app": nomApp,
+                  "opcion": opcion,
+                  "transferencia": bandera_tranferido,
+                  "fueraHorario": bandera_fueraHorario,
+                  "grupoACD": nom_grupoACD
+                })
+              };
+
+              //if(!bandera){ result = msj_dafault;}
+
+              if(bandera == true)
+              {                
+                console.log(options);
+                request(options, function (error, response)
+                { 
+                  if (error) throw new Error(error);
+                  console.log(response.body);
+                });
+              }
+              else{result = msj_dafault;}
 
               estatus = 200;
 
@@ -125,7 +165,7 @@ app.post('/message', (req, res) => {
                 },
                 "action":{
                   "type": result.accion,
-                  "queue": result.queue
+                  "queue": nom_grupoACD
                 },
                 "messages":[
                   {
@@ -238,7 +278,23 @@ app.post('/terminate', (req, res) => {
   }
 
   res.status(estatus).json(resultado);
-})
+});
+
+function obtener_ACD(rs)
+{
+  switch (rs)
+  {
+    case "messenger":
+      return config.cola_opc1_FB; // HN_FB_MSS_SAC      
+    break;
+    case "twitterDM":
+      return config.cola_opc1_TW; // HN_TW_DM_SAC      
+    break;
+    default:
+        return config.cola_opc1; // HN_Wa_Movil 
+    break;
+  }
+}
 
 app.get('/:img', function(req, res){
     res.sendFile( `img/${img}` );
@@ -262,7 +318,7 @@ app.get('/', (req, res) => {
   respuesta += "Hora inicio: " + config.OPEN_HOUR + " - Hora Fin: " + config.CLOSE_HOUR + " <br> ";
   respuesta += "Respuesta del Horario: " + horarios + " <br> ";
   respuesta += "Hora Convertida  " + nd +" <br>";
-  respuesta += "Versión: 2.0.0 <br>";
+  respuesta += "Sixbell 2020 - Versión: 3.0.0 <br>";
   res.status(200).send(respuesta);
 })
 
