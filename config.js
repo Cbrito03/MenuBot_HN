@@ -22,7 +22,10 @@ var cola_opc1 = "HN_Wa_Movil";
 var cola_opc1_FB = "HN_FB_MSS_SAC";
 var cola_opc1_TW = "HN_TW_DM_SAC";
 
-var mjs_horario = "Nuestro horario de atención es de 7:00 am a 10:00 pm";
+var mensaje_asesor = "*¡Bienvenido a CLARO Honduras! Estamos para servirle!* $cr ";
+    mensaje_asesor += "*En un momento le estará atendiendo uno de nuestros ejecutivos.*";
+
+var mjs_horario = "Estimado cliente, te informamos que nuestro horario de atención es de Lunes a Domingo de 7:00 - 22:00, Agradeceremos tu preferencia";
 
 var contenedor = {
   "type": "",
@@ -79,7 +82,7 @@ var palabras = {
       "type": "text",
       "accion" : "transfer",
       "queue" : "",
-      "mensaje" : "",
+      "mensaje" : mensaje_asesor,
       "mediaURL" : ""
   }
 };
@@ -91,7 +94,7 @@ var mensaje_df = "¡Hola! $cr Soy tu asistente virtual 🤖 de Claro $cr Te pued
   //mensaje_df +="➡️ Envía *marcaciones* para conocer los pasos a seguir para los tramites a través de marcaciones 📱. $cr $cr ";
   mensaje_df +="➡️ Envía *configuración* para conocer los pasos a seguir si tienes inconvenientes con tu navegación 📱. $cr $cr ";
   mensaje_df +="➡️ Envía *club* para conocer los establecimientos con promociones especiales solo por ser cliente Claro. 😎 💰 $cr $cr ";
-  mensaje_df +="➡️ Envía *asesor* si aún deseas ser atendido por uno de nuestros agentes de servicio al cliente o ventas. 👩💻👨💻 $cr $cr ";
+  mensaje_df +="➡️ Envía *asesor* si aún deseas ser atendido por uno de nuestros agentes de servicio al cliente. 👩💻👨💻 $cr $cr ";
 
 var msj_default = {
   "type": "text",
