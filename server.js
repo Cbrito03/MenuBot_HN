@@ -156,29 +156,62 @@ app.post('/message', (req, res) => {
               else{result = msj_dafault;}
 
               estatus = 200;
-
-              resultado = {
-                "context":{
-                  "agent":false,
-                  "callback":false,
-                  "video":false
-                },
-                "action":{
-                  "type": result.accion,
-                  "queue": nom_grupoACD
-                },
-                "messages":[
-                  {
-                    "type": result.type,
-                    "text": result.mensaje,
-                    "mediaURL": result.mediaURL
+              console.log("Nuevo :: ", opcion);
+              if( opcion !== "configuracion")
+              {
+                resultado = {
+                  "context":{
+                    "agent":false,
+                    "callback":false,
+                    "video":false
+                  },
+                  "action":{
+                    "type": result.accion,
+                    "queue": nom_grupoACD
+                  },
+                  "messages":[
+                    {
+                      "type": result.type,
+                      "text": result.mensaje,
+                      "mediaURL": result.mediaURL
+                    }
+                  ],
+                  "additionalInfo": {
+                    "key":"RUT",
+                    "RUT":"1-9"
                   }
-                ],
-                "additionalInfo": {
-                  "key":"RUT",
-                  "RUT":"1-9"
                 }
               }
+              else
+              {
+                resultado = {
+                  "context":{
+                    "agent":false,
+                    "callback":false,
+                    "video":false
+                  },
+                  "action":{
+                    "type": result.accion,
+                    "queue": nom_grupoACD
+                  },
+                  "messages":[
+                    {
+                        "type": 'image',
+                        "mediaURL": result.mediaURL
+                    },
+                    {
+                      "type": "text",
+                      "text": result.mensaje
+                    }
+                  ],
+                  "additionalInfo": {
+                    "key":"RUT",
+                    "RUT":"1-9"
+                  }
+                }
+              }
+
+              
 
               if(result.mensaje === ""){  resultado.messages = [];  }
             }
