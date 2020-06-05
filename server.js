@@ -157,62 +157,45 @@ app.post('/message', (req, res) => {
 
               estatus = 200;
               console.log("Nuevo :: ", opcion);
-              if( opcion !== "configuracion")
+              var message_text;
+              
+              if(opcion == "configuracion" && channel == "messenger")
               {
-                resultado = {
-                  "context":{
-                    "agent":false,
-                    "callback":false,
-                    "video":false
-                  },
-                  "action":{
-                    "type": result.accion,
-                    "queue": nom_grupoACD
-                  },
-                  "messages":[
-                    {
-                      "type": result.type,
-                      "text": result.mensaje,
+                message_text =[{
+                      "type": 'image',
+                      "text": '',
                       "mediaURL": result.mediaURL
-                    }
-                  ],
-                  "additionalInfo": {
-                    "key":"RUT",
-                    "RUT":"1-9"
-                  }
-                }
+                  },
+                  {
+                    "type": "text",
+                    "text": result.mensaje
+                  }];                
               }
               else
               {
-                resultado = {
-                  "context":{
-                    "agent":false,
-                    "callback":false,
-                    "video":false
-                  },
-                  "action":{
-                    "type": result.accion,
-                    "queue": nom_grupoACD
-                  },
-                  "messages":[
-                    {
-                        "type": 'image',
-                        "text": '',
-                        "mediaURL": result.mediaURL
-                    },
-                    {
-                      "type": "text",
-                      "text": result.mensaje
-                    }
-                  ],
-                  "additionalInfo": {
-                    "key":"RUT",
-                    "RUT":"1-9"
-                  }
-                }
+                message_text = [{
+                  "type": result.type,
+                  "text": result.mensaje,
+                  "mediaURL": result.mediaURL
+                }];
               }
 
-              
+              resultado = {
+                "context":{
+                  "agent":false,
+                  "callback":false,
+                  "video":false
+                },
+                "action":{
+                  "type": result.accion,
+                  "queue": nom_grupoACD
+                },
+                "messages": message_text,
+                "additionalInfo": {
+                  "key":"RUT",
+                  "RUT":"1-9"
+                }
+              }           
 
               if(result.mensaje === ""){  resultado.messages = [];  }
             }
