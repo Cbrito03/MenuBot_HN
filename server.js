@@ -197,6 +197,7 @@ app.post('/message', (req, res) => {
                   "messages":[
                     {
                         "type": 'image',
+                        "text": '',
                         "mediaURL": result.mediaURL
                     },
                     {
