@@ -70,14 +70,14 @@ var palabras = {
       "queue" : "",
       "mensaje" : "Consulta la imagen para conocer los trámites que puedes realizar a través de marcaciones",
       "mediaURL" : "https://menubothn.mybluemix.net/tramitesCortos.png"
-  },*/
+  },
   "configuracion": {
       "type": "image",
       "accion" : "continue",
       "queue" : "",
       "mensaje" : "Sigue los pasos detallados en la imagen, si el inconveniente persiste, favor escribe *asesor* para recibir asistencia técnica con uno de nuestros agentes.",
       "mediaURL" : "https://menubothn.mybluemix.net/APN.png"
-  },
+  },*/
   "asesor": {
       "type": "text",
       "accion" : "transfer",
@@ -92,7 +92,7 @@ var mensaje_df = "¡Hola! $cr Soy tu asistente virtual 🤖 de Claro $cr Te pued
   mensaje_df +="➡️ Envía *paquete* para comprar un paquete. $cr $cr ";
   mensaje_df +="➡️ Envía *pagar* para ver el saldo, fecha de vencimiento y pagar tu factura móvil y residencial. 💳 $cr $cr ";
   //mensaje_df +="➡️ Envía *marcaciones* para conocer los pasos a seguir para los tramites a través de marcaciones 📱. $cr $cr ";
-  mensaje_df +="➡️ Envía *configuración* para conocer los pasos a seguir si tienes inconvenientes con tu navegación 📱. $cr $cr ";
+  //mensaje_df +="➡️ Envía *configuración* para conocer los pasos a seguir si tienes inconvenientes con tu navegación 📱. $cr $cr ";
   mensaje_df +="➡️ Envía *club* para conocer los establecimientos con promociones especiales solo por ser cliente Claro. 😎 💰 $cr $cr ";
   mensaje_df +="➡️ Envía *asesor* si aún deseas ser atendido por uno de nuestros agentes de servicio al cliente. 👩💻👨💻 $cr $cr ";
 

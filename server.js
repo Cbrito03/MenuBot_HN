@@ -71,133 +71,148 @@ app.post('/message', (req, res) => {
           {
             if(cadena !== '' && typeof cadena !== "undefined")
             {
-              cadena = cadena.text.toLowerCase(); // minusculas
-              cadena = cadena.trim();
-              msj_buscar_opcion = cadena;
-              cadena = cadena.replace(/,/g,"").replace(/;/g,"").replace(/:/g,"").replace(/\./g,""); // borramos ,;.:
-              cadena = cadena.split(" "); // lo convertimo en array mediante los espacios
+              if(context.lastInteractionFinishType !== "CLIENT_TIMEOUT")
+							{
+                cadena = cadena.text.toLowerCase(); // minusculas
+                cadena = cadena.trim();
+                msj_buscar_opcion = cadena;
+                cadena = cadena.replace(/,/g,"").replace(/;/g,"").replace(/:/g,"").replace(/\./g,""); // borramos ,;.:
+                cadena = cadena.split(" "); // lo convertimo en array mediante los espacios
 
-              for(var i = 0; i < cadena.length; i++)
-              {
-                for(var atr in palabras)
+                for(var i = 0; i < cadena.length; i++)
                 {
-                  if(cadena[i] === "configuración"){ cadena[i] = 'configuracion'}
-
-                  if(atr.toLowerCase() === cadena[i])
+                  for(var atr in palabras)
                   {
-                    opcion = cadena[i];
+                    //if(cadena[i] === "configuración"){ cadena[i] = 'configuracion'}
 
-                    if(cadena[i] === "asesor")
+                    if(atr.toLowerCase() === cadena[i])
                     {
-                      if(horarios)
+                      opcion = cadena[i];
+
+                      if(cadena[i] === "asesor")
                       {
-                        msj_buscar = cadena[i];
-                        nom_grupoACD = obtener_ACD(channel);                        
-                        result = palabras[atr];
-                        bandera_tranferido = true;                                  
+                        if(horarios)
+                        {
+                          msj_buscar = cadena[i];
+                          nom_grupoACD = obtener_ACD(channel);                        
+                          result = palabras[atr];
+                          bandera_tranferido = true;                                  
+                        }
+                        else
+                        {
+                          console.log("[Brito] :: [No cumple horario habil] :: [horarios] :: "+horarios);
+                          msj_buscar = cadena[i];
+                          contenedor.type = palabras[atr].type;
+                          contenedor.accion = "end";
+                          contenedor.queue = "";
+                          contenedor.mensaje = mjs_horario;
+                          result = contenedor;
+                          bandera_fueraHorario = true;
+                        }
                       }
                       else
                       {
-                        console.log("[Brito] :: [No cumple horario habil] :: [horarios] :: "+horarios);
                         msj_buscar = cadena[i];
-                        contenedor.type = palabras[atr].type;
-                        contenedor.accion = "end";
-                        contenedor.queue = "";
-                        contenedor.mensaje = mjs_horario;
-                        result = contenedor;
-                        bandera_fueraHorario = true;
+                        result = palabras[atr];
                       }
-                    }
-                    else
-                    {
-                      msj_buscar = cadena[i];
-                      result = palabras[atr];
-                    }
 
-                    bandera = true;
-                    bandera_opt = true;
-                    break;
+                      bandera = true;
+                      bandera_opt = true;
+                      break;
+                    }
+                  }
+
+                  if(bandera){ break; }
+                }
+
+
+                var options = {
+                  'method': 'POST',
+                  'url': 'https://estadisticasmenubot.mybluemix.net/opcion/insert',
+                  'headers': {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(
+                  {
+                    "conversacion_id": conversationID,
+                    "pais": pais,
+                    "app": nomApp,
+                    "opcion": opcion,
+                    "transferencia": bandera_tranferido,
+                    "fueraHorario": bandera_fueraHorario,
+                    "grupoACD": nom_grupoACD
+                  })
+                };
+
+                //if(!bandera){ result = msj_dafault;}
+
+                if(bandera == true)
+                {                
+                  console.log(options);
+                  request(options, function (error, response)
+                  { 
+                    if (error) throw new Error(error);
+                    console.log(response.body);
+                  });
+                }
+                else{result = msj_dafault;}
+
+                estatus = 200;
+                console.log("Nuevo :: ", opcion);
+                var message_text;
+                
+               /* if(opcion == "configuracion" && channel == "messenger")
+                {
+                  message_text =[{
+                        "type": 'image',
+                        "text": '',
+                        "mediaURL": result.mediaURL
+                    },
+                    {
+                      "type": "text",
+                      "text": result.mensaje
+                    }];                
+                }
+                else
+                {*/
+                  message_text = [{
+                    "type": result.type,
+                    "text": result.mensaje,
+                    "mediaURL": result.mediaURL
+                  }];
+                //}            
+
+                resultado = {
+                  "context":context,
+                  "action":{
+                    "type": result.accion,
+                    "queue": nom_grupoACD
+                  },
+                  "messages": message_text,
+                  "additionalInfo": {
+                    "key":"RUT",
+                    "RUT":"1-9"
+                  }
+                }           
+
+                if(result.mensaje === ""){  resultado.messages = [];  }
+
+              }
+              else if(context.lastInteractionFinishType == "CLIENT_TIMEOUT")
+              {
+                resultado = {
+                  "context": context,
+                  "action": {
+                    "type" : "transfer",
+                    "queue" : context.lastInteractionQueue,
+                  },
+                  "messages": [],
+                  "additionalInfo": {
+                    "key":"RUT",
+                    "RUT":"1-9"
                   }
                 }
-
-                if(bandera){ break; }
               }
-
-
-              var options = {
-                'method': 'POST',
-                'url': 'https://estadisticasmenubot.mybluemix.net/opcion/insert',
-                'headers': {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(
-                {
-                  "conversacion_id": conversationID,
-                  "pais": pais,
-                  "app": nomApp,
-                  "opcion": opcion,
-                  "transferencia": bandera_tranferido,
-                  "fueraHorario": bandera_fueraHorario,
-                  "grupoACD": nom_grupoACD
-                })
-              };
-
-              //if(!bandera){ result = msj_dafault;}
-
-              if(bandera == true)
-              {                
-                console.log(options);
-                request(options, function (error, response)
-                { 
-                  if (error) throw new Error(error);
-                  console.log(response.body);
-                });
-              }
-              else{result = msj_dafault;}
-
-              estatus = 200;
-              console.log("Nuevo :: ", opcion);
-              var message_text;
-              
-              if(opcion == "configuracion" && channel == "messenger")
-              {
-                message_text =[{
-                      "type": 'image',
-                      "text": '',
-                      "mediaURL": result.mediaURL
-                  },
-                  {
-                    "type": "text",
-                    "text": result.mensaje
-                  }];                
-              }
-              else
-              {
-                message_text = [{
-                  "type": result.type,
-                  "text": result.mensaje,
-                  "mediaURL": result.mediaURL
-                }];
-              }
-
-              resultado = {
-                "context":{
-                  "agent":false,
-                  "callback":false,
-                  "video":false
-                },
-                "action":{
-                  "type": result.accion,
-                  "queue": nom_grupoACD
-                },
-                "messages": message_text,
-                "additionalInfo": {
-                  "key":"RUT",
-                  "RUT":"1-9"
-                }
-              }           
-
-              if(result.mensaje === ""){  resultado.messages = [];  }
             }
             else
             {
@@ -335,7 +350,7 @@ app.get('/', (req, res) => {
   respuesta += "Hora inicio: " + config.OPEN_HOUR + " - Hora Fin: " + config.CLOSE_HOUR + " <br> ";
   respuesta += "Respuesta del Horario: " + horarios + " <br> ";
   respuesta += "Hora Convertida  " + nd +" <br>";
-  respuesta += "Sixbell 2020 - Versión: 3.0.0 <br>";
+  respuesta += "Sixbell 2020 - Versión: 4.0.0 <br>";
   res.status(200).send(respuesta);
 })
 
