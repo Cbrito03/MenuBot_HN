@@ -103,7 +103,7 @@ app.post('/message', (req, res) => {
                           console.log("[Brito] :: [No cumple horario habil] :: [horarios] :: "+horarios);
                           msj_buscar = cadena[i];
                           contenedor.type = palabras[atr].type;
-                          contenedor.accion = "end";
+                          contenedor.accion = "transfer";
                           contenedor.queue = "";
                           contenedor.mensaje = mjs_horario;
                           result = contenedor;
