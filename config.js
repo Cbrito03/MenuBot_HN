@@ -1,10 +1,13 @@
 var pais = "HN", nomApp = "MenuBot_HN";
 
-var OPEN_HOUR = 7;
+/*var OPEN_HOUR = 7;
 var OPEN_MINUTE = 0;
 
-//var CLOSE_HOUR = 22;
-//var CLOSE_MINUTE = 0;
+var CLOSE_HOUR = 22;
+var CLOSE_MINUTE = 0;*/
+
+var OPEN_HOUR = 0;
+var OPEN_MINUTE = 0;
 
 var CLOSE_HOUR = 23;
 var CLOSE_MINUTE = 59;
