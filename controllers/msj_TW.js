@@ -1,6 +1,6 @@
 var colas = {
   "asesor" : {
-    "timeout" : 300000,
+    "timeout" : 1800000,
     "acd" : "HN_TW_DM_SAC",
     "fh" : "HN_TW_DM_SAC_FueraH"
   }
