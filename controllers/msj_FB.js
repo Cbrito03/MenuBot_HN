@@ -27,8 +27,8 @@ var mensaje_df = "¡Hola! $cr Soy tu asistente virtual 🤖 de Claro $cr Te pued
     mensaje_df +="➡️ Envía *paquete* para comprar un paquete. $cr $cr ";
     mensaje_df +="➡️ Envía *pagar* para ver el saldo, fecha de vencimiento y pagar tu factura móvil y residencial. 💳 $cr $cr ";
     mensaje_df +="➡️ Envía *club* para conocer los establecimientos con promociones especiales solo por ser cliente Claro. 😎 💰 $cr $cr ";
-    mensaje_df +="➡️ Envía *asistencia* para conocer los establecimientos con promociones especiales solo por ser cliente Claro. 😎 💰 $cr $cr ";
-    mensaje_df +="➡️ Envía *asesor* si aún deseas ser atendido por uno de nuestros agentes de servicio al cliente. 👩💻👨💻 $cr $cr ";
+    mensaje_df +="➡️ Envía *asistencia*  si necesitas ayuda con tus servicios 📱📺💻. $cr $cr ";
+    //mensaje_df +="➡️ Envía *asesor* si aún deseas ser atendido por uno de nuestros agentes de servicio al cliente. 👩💻👨💻 $cr $cr ";
 
 var mjs_horario = "Estimado cliente, te informamos que nuestro horario de atención es de Lunes a Domingo de 7:00 - 22:00, Agradeceremos tu preferencia";
 
@@ -146,7 +146,7 @@ var palabras = {
         "mediaURL" : ""
       }
     ]
-  },
+  }/*,
   "asesor": {
     "action" : {
       "type" : "transfer",
@@ -161,7 +161,7 @@ var palabras = {
         "mediaURL" : ""
       }
     ]
-  }
+  }*/
 };
 
 var menu_opciones_asistencia = 
