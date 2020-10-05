@@ -232,9 +232,9 @@ app.post('/wa/message', async (req, res) => {
                   if(bandera_opt)
                   {
                     console.log(options);
-                    /*var resultado_axios = await axios(options);
+                    var resultado_axios = await axios(options);
                     console.log("[Resultado AXIOS] :: ");
-                    console.log(resultado_axios);*/
+                    console.log(resultado_axios);
                   }                 
                 }
                 else
@@ -549,9 +549,9 @@ app.post('/fb/message', async (req, res) => {
                   if(bandera_opt)
                   {
                     console.log(options);
-                    /*var resultado_axios = await axios(options);
+                    var resultado_axios = await axios(options);
                     console.log("[Resultado AXIOS] :: ");
-                    console.log(resultado_axios);*/
+                    console.log(resultado_axios);
                   }                 
                 }
                 else
@@ -865,9 +865,9 @@ app.post('/tw/message', async (req, res) => {
                   if(bandera_opt)
                   {
                     console.log(options);
-                    /*var resultado_axios = await axios(options);
+                    var resultado_axios = await axios(options);
                     console.log("[Resultado AXIOS] :: ");
-                    console.log(resultado_axios);*/
+                    console.log(resultado_axios);
                   }                 
                 }
                 else
