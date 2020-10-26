@@ -2,22 +2,22 @@ var colas = {
   "asesor" : {
     "timeout" : 1800000,
     "acd" : "HN_FB_MSS_SAC",
-    "fh" : "HN_FB_MSS_SAC_FueraH"
+    "fh" : "HN_FB_MSS_SAC_NH"
   },
   "cotizar" : {
     "timeout" : 1800000,
     "acd" : "HN_FB_MSS_Ventas",
-    "fh" : "HN_FB_MSS_Ventas_FueraH"
+    "fh" : "HN_FB_MSS_Ventas_NH"
   },
   "asistencia_1" : {
     "timeout" : 1800000,
     "acd" : "HN_FB_MSS_Ventas",
-    "fh" : "HN_FB_MSS_Ventas_FueraH"      
+    "fh" : "HN_FB_MSS_Ventas_NH"      
   },
   "asistencia_2" : {
     "timeout" : 1800000,
     "acd" : "HN_FB_MSS_SAC",
-    "fh" : "HN_FB_MSS_SAC_FueraH"
+    "fh" : "HN_FB_MSS_SAC_NH"
   },
 };
 

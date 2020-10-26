@@ -2,7 +2,7 @@ var info =
 {
   "pais" : "HN",
   "nomApp" : "MenuBot_HN",
-  "version" : "5.1.0"
+  "version" : "6.0.0"
 };
 
 var url_estd = 'https://estadisticasmenubot.mybluemix.net/opcion/insert';
