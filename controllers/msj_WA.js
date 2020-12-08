@@ -21,14 +21,7 @@ var colas = {
   },
 };
 
-var mensaje_df = "¡Hola! \n Soy tu asistente virtual 🤖 de Claro \n Te puedo ayudar con las siguientes opciones: \n \n ";
-    mensaje_df +="➡️ Envía *cotizar* para conocer nuestros planes móviles y residenciales si deseas renovar o contratar nuevos servicios. 😎 \n \n ";
-    mensaje_df +="➡️ Envía *recarga* para hacer una recarga. \n \n ";
-    mensaje_df +="➡️ Envía *paquete* para comprar un paquete. \n \n ";
-    mensaje_df +="➡️ Envía *pagar* para ver el saldo, fecha de vencimiento y pagar tu factura móvil y residencial. 💳 \n \n ";
-    mensaje_df +="➡️ Envía *club* para conocer los establecimientos con promociones especiales solo por ser cliente Claro. 😎 💰 \n \n ";
-    mensaje_df +="➡️ Envía *asistencia* si necesitas ayuda con tus servicios 📱📺💻. \n \n ";
-    //mensaje_df +="➡️ Envía *asesor* si aún deseas ser atendido por uno de nuestros agentes de servicio al cliente. 👩💻👨💻 \n \n ";
+var mensaje_df = "Nuestro número de WhatsApp ha cambiado, ahora puedes contactarnos ingresando aquí 👉 https://bit.ly/WhatsAppClaroHN. ¡Claro que sí!";
 
 var mjs_horario = "Estimado cliente, te informamos que nuestro horario de atención es de Lunes a Domingo de 7:00 - 22:00, Agradeceremos tu preferencia";
 
@@ -55,7 +48,7 @@ var msj_asistencia = "👋Gracias por comunicarte a Claro, por favor ingresa el 
 var msj_default = 
 {
   "action" : {
-    "type" : "continue",
+    "type" : "end",
     "queue" : ""
   },
   "messages" : [
